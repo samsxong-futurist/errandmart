@@ -1,6 +1,6 @@
-# Freshmart
+# ErrandMart
 
-Freshmart is a supermarket catalogue and WhatsApp ordering app. Customers search the catalogue, add products to an order list, and send the list to the store on WhatsApp. The app does not process payments or calculate delivery fees.
+ErrandMart is a supermarket catalogue and WhatsApp ordering app. Customers search the catalogue, add products to an order list, and send the list to the store on WhatsApp. The app does not process payments or calculate delivery fees.
 
 ## Stack
 
