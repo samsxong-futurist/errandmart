@@ -30,19 +30,18 @@ The browser does not access Supabase directly. It calls the Express API, which k
 | Path | Purpose |
 | --- | --- |
 | `server.js` | Root Node launcher used by npm and nodemon |
-| `backend/server.ts` | Express application, API routes, static frontend serving, and development Vite middleware |
-| `frontend/App.tsx` | Browser entry application and simple `/` or `/admin` screen selection |
-| `frontend/routes/index.tsx` | Customer catalogue, search, category filtering, and order-list entry point |
-| `frontend/routes/admin.tsx` | Passcode-protected CSV import and catalogue overview |
-| `frontend/libs/api.ts` | Typed browser client for the Express JSON API |
-| `backend/import.server.ts` | Server-side import synchronisation: match, update, insert, deactivate, and log |
-| `backend/supabase-public.server.ts` | Server-side read-only Supabase client for public catalogue queries |
-| `backend/integration/supabase/client.server.ts` | Server-side Supabase service-role client for trusted admin operations |
-| `frontend/integration/supabase/types.ts` | Generated TypeScript types for the Supabase schema |
-| `frontend/libs/cart.tsx` | Local order-list state and local-storage persistence |
-| `frontend/libs/csv.ts` | CSV parser, price parser, and column auto-mapping |
-| `frontend/libs/whatsapp.ts` | WhatsApp order message and click-to-chat URL generation |
-| `frontend/config/store.ts` | Store name, branding, address, hours, currency, and WhatsApp configuration |
+| `backend/server.js` | Express application, API routes, static frontend serving, and development Vite middleware |
+| `frontend/App.js` | Browser entry application and simple `/` or `/admin` screen selection |
+| `frontend/routes/index.js` | Customer catalogue, search, category filtering, and order-list entry point |
+| `frontend/routes/admin.js` | Passcode-protected CSV import and catalogue overview |
+| `frontend/libs/api.js` | Browser client for the Express JSON API |
+| `backend/import.server.js` | Server-side import synchronisation: match, update, insert, deactivate, and log |
+| `backend/supabase-public.server.js` | Server-side read-only Supabase client for public catalogue queries |
+| `backend/integration/supabase/client.server.js` | Server-side Supabase service-role client for trusted admin operations |
+| `frontend/libs/cart.js` | Local order-list state and local-storage persistence |
+| `frontend/libs/csv.js` | CSV parser, price parser, and column auto-mapping |
+| `frontend/libs/whatsapp.js` | WhatsApp order message and click-to-chat URL generation |
+| `frontend/config/store.js` | Store name, branding, address, hours, currency, and WhatsApp configuration |
 | `supabase/migrations/` | Database schema, policies, indexes, triggers, and sample products |
 
 ## API Routes
@@ -73,7 +72,7 @@ Required server variables:
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ADMIN_PASSCODE`
 
-The `VITE_*` Supabase variables are retained for compatibility with the environment template, but the current browser application uses the Express API and does not create a Supabase client in the browser.
+The browser does not receive Supabase credentials. It calls Express, and only the backend reads the Supabase URL, publishable key, and service-role key.
 
 ## Local Commands
 

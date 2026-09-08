@@ -5,7 +5,7 @@ ErrandMart is a supermarket catalogue and WhatsApp ordering app. Customers searc
 ## Stack
 
 - Node.js and Express
-- React 19 and TypeScript
+- React 19 and JavaScript
 - Vite and Tailwind CSS
 - Supabase PostgreSQL
 - WhatsApp click-to-chat
@@ -32,8 +32,6 @@ The Express development server runs at `http://localhost:3000`. It starts Vite i
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 ADMIN_PASSCODE=choose-a-private-admin-passcode
 VITE_WHATSAPP_NUMBER=2348012345678
 ```
@@ -44,7 +42,7 @@ The sample catalogue is inserted by the migration and can be replaced from `/adm
 
 ## Rebrand the store
 
-Edit `frontend/config/store.ts` for the store name, address, hours, currency, and WhatsApp display number. The customer UI and order message use this configuration.
+Edit `frontend/config/store.js` for the store name, address, hours, currency, and WhatsApp display number. The customer UI and order message use this configuration.
 
 ## Useful commands
 
@@ -64,7 +62,7 @@ npm start
 
 ## Architecture
 
-The React UI talks to JSON endpoints in `backend/server.ts`, not directly to the inventory source. Supabase is the current source, while CSV import is the synchronization layer. A future inventory API can replace the read and import implementations without changing the catalogue UI.
+The React UI talks to JSON endpoints in `backend/server.js`, not directly to Supabase. Supabase is the database, while CSV import is the synchronization layer. The Vercel `api/index.js` file is only a deployment adapter for the Express app.
 
 The main flow is:
 
