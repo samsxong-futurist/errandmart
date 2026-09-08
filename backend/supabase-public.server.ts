@@ -1,10 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "./integration/supabase/types";
+import { getSupabaseConfig } from "./config.server";
 
 /** Anon-key client for public, read-only catalogue queries on the server. */
 export function getPublicClient() {
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
-  return createClient<Database>(process.env["SUPABASE_URL"]!, key, {
+  const { url, publishableKey: key } = getSupabaseConfig();
+  return createClient<Database>(url, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     global: {
       // Opaque sb_ keys are not JWTs; send them only as the apikey header.

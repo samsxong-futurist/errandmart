@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { getPublicClient } from "./supabase-public.server";
 import { getOverview, runImport } from "./import.server";
+import { getAdminPasscode } from "./config.server";
 
 export const app = express();
 
@@ -13,6 +14,16 @@ const healthHandler = (_request: Request, response: Response) => response.json({
 
 app.get("/api", healthHandler);
 app.get("/api/health", healthHandler);
+
+app.get("/api/health/db", async (_request, response, next) => {
+  try {
+    const { error } = await getPublicClient().from("products").select("id").limit(1);
+    if (error) throw new Error(error.message);
+    response.json({ ok: true, database: "connected" });
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.get("/api/products", async (request, response, next) => {
   try {
@@ -55,7 +66,7 @@ app.get("/api/categories", async (_request, response, next) => {
 });
 
 function requireAdmin(passcode: string) {
-  if (!process.env["ADMIN_PASSCODE"] || passcode !== process.env["ADMIN_PASSCODE"]) {
+  if (passcode !== getAdminPasscode()) {
     throw new Error("Invalid admin passcode");
   }
 }
