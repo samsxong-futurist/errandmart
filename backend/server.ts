@@ -1,8 +1,8 @@
 import "dotenv/config";
+import express from "express";
 import { createServer as createViteServer } from "vite";
 import { app } from "./app";
 
-const app = express();
 const port = Number(process.env["PORT"] ?? 3000);
 const isProduction = process.env["NODE_ENV"] === "production";
 

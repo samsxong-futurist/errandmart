@@ -9,7 +9,10 @@ export const app = express();
 
 app.use(express.json({ limit: "10mb" }));
 
-app.get("/api/health", (_request, response) => response.json({ ok: true }));
+const healthHandler = (_request: Request, response: Response) => response.json({ ok: true });
+
+app.get("/api", healthHandler);
+app.get("/api/health", healthHandler);
 
 app.get("/api/products", async (request, response, next) => {
   try {
