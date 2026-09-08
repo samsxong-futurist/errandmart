@@ -3,10 +3,5 @@
   "outputDirectory": "dist/client",
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
-  ],
-  "functions": {
-    "api/index.js": {
-      "includeFiles": ["backend/**"]
-    }
-  }
+  ]
 }
